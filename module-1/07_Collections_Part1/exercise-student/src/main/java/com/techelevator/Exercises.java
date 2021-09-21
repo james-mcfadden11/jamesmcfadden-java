@@ -1,7 +1,6 @@
 package com.techelevator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Exercises {
 
@@ -16,7 +15,11 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> resultArrayList = new ArrayList<>();
+		for (String str : stringArray) {
+			resultArrayList.add(str);
+		}
+		return resultArrayList;
 	}
 
 	/*
@@ -26,7 +29,7 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		return stringList.toArray(new String[stringList.size()]);
 	}
 
 	/*
@@ -37,7 +40,13 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> resultArrayList = new ArrayList<>();
+		for (String str : stringArray) {
+			if (str.length() != 4) {
+				resultArrayList.add(str);
+			}
+		}
+		return resultArrayList;
 	}
 
 	/*
@@ -47,7 +56,11 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> doublesArrayList = new ArrayList<>();
+		for (int num : intArray) {
+			doublesArrayList.add(num / 2.0);
+		}
+		return doublesArrayList;
 	}
 
 	/*
@@ -57,7 +70,13 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 81238
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		int maxValue = integerList.get(0);
+		for (int num : integerList) {
+			if (num > maxValue) {
+				maxValue = num;
+			}
+		}
+		return maxValue;
 	}
 
 	/*
@@ -67,7 +86,13 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> oddValues = new ArrayList<>();
+		for (int num : integerArray) {
+			if (num % 2 != 0) {
+				oddValues.add(num);
+			}
+		}
+		return oddValues;
 	}
 
 	/*
@@ -78,6 +103,15 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
+		int numberOfTimesFound = 0;
+		for (int num : integerList) {
+			if (num == intToFind) {
+				numberOfTimesFound++;
+			}
+			if (numberOfTimesFound == 2) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -94,7 +128,19 @@ public class Exercises {
 	HINT: To convert an Integer x to a String, you can use x.toString() in your code. For example, if x = 1, then x.toString() returns "1."
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		List<String> resultList = new ArrayList<>();
+		for (Integer num : integerArray) {
+			if (num % 3 == 0 && num % 5 == 0) {
+				resultList.add("FizzBuzz");
+			} else if (num % 3 == 0) {
+				resultList.add("Fizz");
+			} else if (num % 5 == 0) {
+				resultList.add("Buzz");
+			} else {
+				resultList.add(num.toString());
+			}
+		}
+		return resultList;
 	}
 
 	/*
@@ -105,7 +151,30 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+
+		// is there a better way???
+		List<Integer> resultList = new ArrayList<>();
+		List<Integer> longerList;
+		List<Integer> shorterList;
+
+		if (listOne.size() >= listTwo.size()) {
+			longerList = listOne;
+			shorterList = listTwo;
+		} else {
+			longerList = listTwo;
+			shorterList = listOne;
+		}
+
+		for (int i = 0; i < longerList.size(); i++) {
+			if (i >= shorterList.size()) {
+				resultList.add(longerList.get(i));
+			} else {
+				resultList.add(listOne.get(i));
+				resultList.add(listTwo.get(i));
+			}
+		}
+
+		return resultList;
 	}
 
 	/*
@@ -118,7 +187,29 @@ public class Exercises {
 	 boardingGate( [0, -1, 44, 31, 17, 7, 27, 16, 26, 6] ) -> [7, 6, 17, 16, 27, 26]
 	 */
 	public List<Integer> boardingGate(List<Integer> seatNumberList) {
-		return null;
+
+		// is there a better way???
+		List<Integer> resultList = new ArrayList<>();
+
+		Queue<Integer> oneThruTen = new LinkedList<Integer>();
+		Queue<Integer> elevenThruTwenty = new LinkedList<Integer>();
+		Queue<Integer> twentyoneThruThirty = new LinkedList<Integer>();
+
+		for (Integer seatNumber : seatNumberList) {
+			if (seatNumber >= 1 && seatNumber <= 10) {
+				oneThruTen.offer(seatNumber);
+			} else if (seatNumber >= 11 && seatNumber <= 20) {
+				elevenThruTwenty.offer(seatNumber);
+			} else if (seatNumber >= 21 && seatNumber <= 30) {
+				twentyoneThruThirty.offer(seatNumber);
+			}
+		}
+
+		resultList.addAll(oneThruTen);
+		resultList.addAll(elevenThruTwenty);
+		resultList.addAll(twentyoneThruThirty);
+
+		return resultList;
 	}
 
 }
