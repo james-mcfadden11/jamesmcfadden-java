@@ -1,7 +1,6 @@
 package com.techelevator;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Exercises {
 
@@ -34,7 +33,23 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		Map<String, String> animalMap = new HashMap<>();
+		animalMap.put("rhino","Crash");
+		animalMap.put("giraffe","Tower");
+		animalMap.put("elephant","Herd");
+		animalMap.put("lion","Pride");
+		animalMap.put("crow","Murder");
+		animalMap.put("pigeon","Kit");
+		animalMap.put("flamingo","Pat");
+		animalMap.put("deer","Herd");
+		animalMap.put("dog","Pack");
+		animalMap.put("crocodile","Float");
+
+		if (animalName == null || !animalMap.containsKey(animalName.toLowerCase())) {
+			return "unknown";
+		} else {
+			return animalMap.get(animalName.toLowerCase());
+		}
 	}
 
 	/*
@@ -60,7 +75,19 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
+		Map<String, Double> saleMap = new HashMap<>();
+		saleMap.put("KITCHEN4001", 0.20);
+		saleMap.put("GARAGE1070", 0.15);
+		saleMap.put("LIVINGROOM", 0.10);
+		saleMap.put("KITCHEN6073", 0.40);
+		saleMap.put("BEDROOM3434", 0.60);
+		saleMap.put("BATH0073", 0.15);
+
+		if (itemNumber == null || !saleMap.containsKey(itemNumber.toUpperCase())) {
+			return 0.0;
+		} else {
+			return saleMap.get(itemNumber.toUpperCase());
+		}
 	}
 
 	/*
@@ -74,7 +101,11 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		if (peterPaul.get("Peter") > 0 && peterPaul.get("Paul") < 1000) {
+			peterPaul.put("Paul", peterPaul.get("Paul") + (int)(peterPaul.get("Peter") / 2.0));
+			peterPaul.put("Peter", (int)Math.ceil((peterPaul.get("Peter") / 2.0)));
+		}
+		return peterPaul;
 	}
 
 	/*
@@ -87,7 +118,12 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		if (peterPaul.get("Peter") >= 5000 && peterPaul.get("Paul") >= 10000) {
+			peterPaul.put("PeterPaulPartnership", (int)(peterPaul.get("Peter") * 0.25) + (int)(peterPaul.get("Paul") * 0.25));
+			peterPaul.put("Peter", (int)(peterPaul.get("Peter") * 0.75));
+			peterPaul.put("Paul", (int)(peterPaul.get("Paul") * 0.75));
+		}
+		return peterPaul;
 	}
 
 	/*
@@ -99,7 +135,11 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
+		Map<String, String> resultMap = new HashMap<>();
+		for (String word : words) {
+			resultMap.put(word.substring(0, 1), word.substring(word.length() - 1, word.length()));
+		}
+		return resultMap;
 	}
 
 	/*
@@ -115,7 +155,15 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		// convert words array to ArrayList
+		List<String> newWords = new ArrayList<>(Arrays.asList(words));
+		// initialize map
+		Map<String, Integer> resultMap = new HashMap<>();
+		// for each String word in words, add/update map entry to == frequency of that word in words
+		for (String word : newWords) {
+			resultMap.put(word, Collections.frequency(newWords, word));
+		}
+		return resultMap;
 	}
 
 	/*
@@ -130,7 +178,18 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		// convert ints array to an ArrayList
+		List<Integer> newInts = new ArrayList<>();
+		for (int num : ints) {
+			newInts.add(num);
+		}
+		// initialize map
+		Map<Integer, Integer> resultMap = new HashMap<>();
+		// for each number, add/update map entry to == frequency of that number in the list
+		for (Integer num : newInts) {
+			resultMap.put(num, Collections.frequency(newInts, num));
+		}
+		return resultMap;
 	}
 
 	/*
@@ -143,7 +202,16 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
-		return null;
+		List<String> wordsList = new ArrayList<>(Arrays.asList(words));
+		Map<String, Boolean> resultMap = new HashMap<>();
+		for (String word : wordsList) {
+			if (Collections.frequency(wordsList, word) >= 2) {
+				resultMap.put(word, true);
+			} else {
+				resultMap.put(word, false);
+			}
+		}
+		return resultMap;
 	}
 
 	/*
@@ -158,7 +226,16 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
-		return null;
+		// hope this is ok. doesnt create a new map, but rather merges remoteWarehouse into mainWarehouse
+		// and returns the "new" map. avoids doing 2 loops.
+		for (Map.Entry<String, Integer> entry : remoteWarehouse.entrySet()) {
+			if (mainWarehouse.containsKey(entry.getKey())) {
+				mainWarehouse.put(entry.getKey(), entry.getValue() + mainWarehouse.get(entry.getKey()));
+			} else {
+				mainWarehouse.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return mainWarehouse;
 	}
 
 	/*
@@ -177,7 +254,22 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> last2Revisited(String[] words) {
-		return null;
+		Map<String, Integer> resultMap = new HashMap<>();
+		// nested for-loop -- not great, but no other way??
+		for (String word : words) {
+			int appearancesOfLastTwo = 0;
+			if (word.length() < 3) {
+				break;
+			}
+			String lastTwo = word.substring(word.length() - 2);
+			for (int i = 0; i < word.length() - 2; i++) {
+				if (word.substring(i, i + 2).equals(lastTwo)) {
+					appearancesOfLastTwo++;
+				}
+			}
+			resultMap.put(word, appearancesOfLastTwo);
+		}
+		return resultMap;
 	}
 
 }
