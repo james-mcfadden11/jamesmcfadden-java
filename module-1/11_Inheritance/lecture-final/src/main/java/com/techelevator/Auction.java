@@ -16,13 +16,17 @@ public class Auction {
 	}
 
 	public boolean placeBid(Bid offeredBid) {
-		allBids.add(offeredBid);
+		addBid(offeredBid);
 		boolean isCurrentWinningBid = false;
 		if (offeredBid.getBidAmount() > currentHighBid.getBidAmount()) {
 			currentHighBid = offeredBid;
 			isCurrentWinningBid = true;
 		}
 		return isCurrentWinningBid;
+	}
+
+	private void addBid(Bid offeredBid) {
+		allBids.add(offeredBid);
 	}
 
 	public Bid getHighBid() {
