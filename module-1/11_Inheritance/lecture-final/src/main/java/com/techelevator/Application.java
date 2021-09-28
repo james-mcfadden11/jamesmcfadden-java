@@ -29,8 +29,6 @@ public class Application {
 
 
 
-
-
         Chef boyardee = new Chef("Bob", "Boyardee", 150, 1000, "Spaghetti O's");
 
 
