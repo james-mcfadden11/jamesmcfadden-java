@@ -18,6 +18,17 @@ public class FileReadingLecture {
             System.out.println("The file does not exist!");
             return;
         }
+        Scanner fileScanner2 = null;
+        try {
+            fileScanner2 = new Scanner(file);
+
+        } catch(FileNotFoundException e) {
+
+        } finally {
+            if(fileScanner2 != null) {
+                fileScanner2.close();
+            }
+        }
 
         try (Scanner fileScanner = new Scanner(file)) {
 

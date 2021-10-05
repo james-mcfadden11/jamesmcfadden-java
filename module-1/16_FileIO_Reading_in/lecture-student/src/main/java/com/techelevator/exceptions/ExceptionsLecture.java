@@ -4,7 +4,31 @@ import java.util.Scanner;
 
 public class ExceptionsLecture {
 
+
+	public static int dateFashion(int you, int them) {
+		if (you < 0) {
+			throw new NegativeInputException("you was a negative number. Negative is not allowed.", you);
+		} else if(them < 0) {
+			throw new NegativeInputException("them was a negative number. Negative is not allowed.", them);
+		}
+
+		// our logic is here
+
+		return 0;
+	}
+
+
+	public static void blah() {
+		Blah.blah();
+	}
 	public static void main(String[] args) {
+
+
+
+		blah();
+
+
+
 		Scanner scan = new Scanner(System.in);
 		
 		/* By default, when an Exception is thrown, it will "bubble up" through the call stack until
