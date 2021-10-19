@@ -1,4 +1,3 @@
-DROP TABLE member;
 
 CREATE TABLE member
 (
@@ -36,7 +35,7 @@ values ('ellen', 'davis', 'ellen@TE.com', '321654987', '6/6/1990', true);
 insert into member (last_name, first_name, email, phone_number, birthday, email_reminders)
 values ('frank', 'gia', 'frank@gia.com', '123456', '2/2/1922', true);
 
-drop table event;
+--------------------------------------------------------------
 
 CREATE TABLE event
 (
@@ -61,7 +60,7 @@ values ('Python coding meetup', 'meeting up to write some java', '10/29/2021 5:0
 insert into event (name, description, start_date_time, duration_minutes, group_in_charge, number_of_members)
 values ('Java coffee brewing meetup', 'meeting up to brew some java', '10/09/2022 1:00', 45, (select group_number from "group" where name = 'Java coders united'), 10);
 
-
+-------------------------------------------------------------------
 
 CREATE TABLE "group"
 (
@@ -79,7 +78,43 @@ values ('C# enthusiasts', 3);
 insert into "group" (name, number_of_members)
 values ('Python developers', 20);
 
+-------------------------------------------------------------
 
+CREATE TABLE group_member
+(
+        group_number INTEGER references "group" (group_number),
+        member_number INTEGER references member (member_number),
+        
+        CONSTRAINT pk_group_number_member_number PRIMARY KEY (group_number, member_number)
+);
 
+--email should be unique in member table
+--group name should be unique
 
+insert into group_member (group_number, member_number)
+values ((select group_number from "group" where name = 'Java coders united'), (select member_number from member where email = 'ad@google.com'));
 
+insert into group_member (group_number, member_number)
+values ((select group_number from "group" where name = 'Java coders united'), (select member_number from member where email = 'cn@yahoo.com'));
+
+insert into group_member (group_number, member_number)
+values ((select group_number from "group" where name = 'C# enthusiasts'), (select member_number from member where email = 'ad@google.com'));
+
+-------------------------------------------------------------
+
+CREATE TABLE event_member
+(
+        event_number INTEGER references event (event_number),
+        member_number INTEGER references member (member_number),
+        
+        CONSTRAINT pk_event_number_member_number PRIMARY KEY (event_number, member_number)
+);
+
+insert into event_member (event_number, member_number)
+values ((select event_number from event where name = 'Java coding meetup'), (select member_number from member where email = 'ad@google.com'));
+
+insert into event_member (event_number, member_number)
+values ((select event_number from event where name = 'Java coding meetup'), (select member_number from member where email = 'cn@yahoo.com'));
+
+insert into event_member (event_number, member_number)
+values ((select event_number from event where name = 'Java coffee brewing meetup'), (select member_number from member where email = 'ad@google.com'));
