@@ -24,6 +24,11 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
 	@Override
 	public List<Employee> searchEmployeesByName(String firstNameSearch, String lastNameSearch) {
+//		String sql = "SELECT * FROM employee WHERE first_name ILIKE '%?%' AND last_name ILIKE '%?%';";
+		String sql = "SELECT * FROM employee WHERE first_name ILIKE ? AND last_name ILIKE ?;";
+
+		jdbcTemplate.queryForRowSet(sql, "%" + firstNameSearch + "%", "%" + lastNameSearch + "%");
+
 		return List.of(new Employee());
 	}
 
