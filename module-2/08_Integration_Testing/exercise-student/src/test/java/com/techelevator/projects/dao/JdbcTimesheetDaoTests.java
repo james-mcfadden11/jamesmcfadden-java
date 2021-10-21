@@ -5,7 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcTimesheetDaoTests extends BaseDaoTests {
@@ -29,17 +31,25 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void getTimesheet_returns_correct_timesheet_for_id() {
-        Assert.fail();
+        Timesheet expected = sut.getTimesheet(1L);
+        assertTimesheetsMatch(expected, TIMESHEET_1);
     }
 
     @Test
     public void getTimesheet_returns_null_when_id_not_found() {
-        Assert.fail();
+        Timesheet expected = sut.getTimesheet(987654L);
+        Assert.assertNull(expected);
     }
 
     @Test
     public void getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee() {
-        Assert.fail();
+        List<Timesheet> actual = sut.getTimesheetsByEmployeeId(2L);
+        List<Timesheet> expected = new ArrayList<>();
+        expected.add(TIMESHEET_2);
+        Assert.assertNotNull(actual);
+        Assert.assertEquals(expected.size(), actual.size());
+        assertTimesheetsMatch(expected, actual);
+
     }
 
     @Test
