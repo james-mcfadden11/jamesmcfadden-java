@@ -39,7 +39,14 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee() {
-        Assert.fail();
+        // Act
+        List<Timesheet> actualTimesheets = sut.getTimesheetsByEmployeeId();
+
+        // Assert
+        // verify actual timesheets not null
+        // verity the size of the list
+        // verify what is in the list
+
     }
 
     @Test
