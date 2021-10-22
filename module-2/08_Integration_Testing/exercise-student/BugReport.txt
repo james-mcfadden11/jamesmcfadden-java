@@ -1,43 +1,43 @@
 Bug 1
 -----
 Test that demonstrates problem:
-
+getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee()
 Expected output:
-
+2 (size of List<Timesheet>)
 Actual output:
-
+1
 How did you fix this bug?
-
+Line 40: changed if (results.next()) to while (results.next())
 
 Bug 2
 -----
 Test that demonstrates problem:
-
+getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project()
 Expected output:
-
+3 (size of List<Timesheet>)
 Actual output:
-
+2
 How did you fix this bug?
-
+Line 52: changed WHERE employee_id to WHERE project_id
 
 Bug 3
 -----
 Test that demonstrates problem:
-
+updated_timesheet_has_expected_values_when_retrieved()
 Expected output:
-
+false (result of Assert.assertEquals(expected.isBillable(), actual.isBillable());)
 Actual output:
-
+true
 How did you fix this bug?
-
+Lines 75 and 77: updated String sql with billable = ? and jdbcTemplate.update() to include updatedTimesheet.isBillable()
 
 Bug 4
 -----
 Test that demonstrates problem:
-
+public void getBillableHours_returns_correct_total()
 Expected output:
-
+0.0 (result of running method with employeeId of 2L and projectId of 2L)
 Actual output:
-
+2.0
 How did you fix this bug?
-
+Line 93: added AND billable = true to String sql
