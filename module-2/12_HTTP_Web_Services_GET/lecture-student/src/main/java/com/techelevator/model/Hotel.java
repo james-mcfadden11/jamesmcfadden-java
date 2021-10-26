@@ -7,6 +7,7 @@ public class Hotel {
     private int stars;
     private int roomsAvailable;
     private String coverImage;
+    // address is intentionally not included here
 
     public Hotel() {
 

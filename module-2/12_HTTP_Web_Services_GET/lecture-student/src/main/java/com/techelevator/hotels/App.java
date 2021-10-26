@@ -1,5 +1,8 @@
 package com.techelevator.hotels;
 
+import com.techelevator.model.City;
+import com.techelevator.model.Hotel;
+import com.techelevator.model.Review;
 import com.techelevator.services.ConsoleService;
 import com.techelevator.services.HotelService;
 
@@ -7,7 +10,7 @@ import java.util.Scanner;
 
 public class App {
     private static final String API_BASE_URL = "https://te-pgh-api.azurewebsites.net/api/";
-    private static final String API_KEY = "999";
+    private static final String API_KEY = "03037";
 
     public static void main(String[] args) {
         run();
@@ -30,17 +33,23 @@ public class App {
             }
             System.out.println("");
             if (menuSelection == 1) {
-                System.out.println("Not implemented");
+                Hotel[] hotels = hotelService.listHotels();
+                consoleService.printHotels(hotels);
             } else if (menuSelection == 2) {
-                System.out.println("Not implemented");
+                Review[] reviews = hotelService.listReviews();
+                consoleService.printReviews(reviews);
             } else if (menuSelection == 3) {
-                System.out.println("Not implemented");
+                // hard-coding 1 as the hotel ID
+                consoleService.printHotel(hotelService.getHotelById(1));
             } else if (menuSelection == 4) {
-                System.out.println("Not implemented");
+                Review[] reviewsForHotel1 = hotelService.getReviewsByHotelId(1);
+                consoleService.printReviews(reviewsForHotel1);
             } else if (menuSelection == 5) {
-                System.out.println("Not implemented");
+                Hotel[] hotels = hotelService.getHotelsByStarRating(3);
+                consoleService.printHotels(hotels);
             } else if (menuSelection == 6) {
-                System.out.println("Not implemented - Create a custom Web API query here");
+                City pittsburgh = hotelService.getWithCustomQuery();
+                System.out.println(pittsburgh);
             } else if (menuSelection == 0) {
                 continue;
             } else {

@@ -1,7 +1,6 @@
 package com.techelevator.services;
 
 import java.util.Scanner;
-
 import com.techelevator.model.Auction;
 
 public class ConsoleService {

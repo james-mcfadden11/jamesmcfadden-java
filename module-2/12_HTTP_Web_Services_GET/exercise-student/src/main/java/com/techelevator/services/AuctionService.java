@@ -1,7 +1,6 @@
 package com.techelevator.services;
 
 import org.springframework.web.client.RestTemplate;
-
 import com.techelevator.model.Auction;
 
 public class AuctionService {
@@ -17,23 +16,23 @@ public class AuctionService {
     }
 
     public Auction[] listAllAuctions() {
-        // api code here
-        return null;
+        String url = this.API_URL + "?apikey=" + this.API_KEY;
+        return restTemplate.getForObject(url, Auction[].class);
     }
 
     public Auction listDetailsForAuction(int id) {
-        // api code here
-        return null;
+        String url = this.API_URL + "/" + id + "?apikey=" + this.API_KEY;
+        return restTemplate.getForObject(url, Auction.class);
     }
 
     public Auction[] findAuctionsSearchTitle(String title) {
-        // api code here
-        return null;
+        String url = this.API_URL + "?title_like=" + title + "&apikey=" + this.API_KEY;
+        return restTemplate.getForObject(url, Auction[].class);
     }
 
     public Auction[] findAuctionsSearchPrice(double price) {
-        // api code here
-        return null;
+        String url = this.API_URL + "?currentBid_lte=" + price + "&apikey=" + this.API_KEY;
+        return restTemplate.getForObject(url, Auction[].class);
     }
 
 }

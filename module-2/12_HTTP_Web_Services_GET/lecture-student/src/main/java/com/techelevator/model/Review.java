@@ -3,7 +3,7 @@ package com.techelevator.model;
 public class Review {
     private int hotelID;
     private String title;
-    private String review;
+    private String reviewText;
     private String author;
     private int stars;
 
@@ -27,12 +27,12 @@ public class Review {
         this.title = title;
     }
 
-    public String getReview() {
-        return review;
+    public String getReviewText() {
+        return reviewText;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setReviewText(String review) {
+        this.reviewText = review;
     }
 
     public String getAuthor() {
@@ -57,8 +57,8 @@ public class Review {
                 "\n Review Details" +
                 "\n--------------------------------------------" +
                 "\n Hotel ID: " + hotelID +
-                "\n Title:'" + title +
-                "\n Review: " + review +
+                "\n Title: " + title +
+                "\n Review: " + reviewText +
                 "\n Author: " + author +
                 "\n Stars: " + stars;
     }
