@@ -6,7 +6,7 @@ import com.techelevator.services.LocationService;
 
 public class App {
 	private static final String API_URL = "https://te-pgh-api.azurewebsites.net/api/locations";
-	private static final String API_KEY = "0000";
+	private static final String API_KEY = "03037";
 
     public static void main(String[] args) {
         int menuSelection = 999;
@@ -14,7 +14,6 @@ public class App {
 
         ConsoleService consoleService = new ConsoleService();
         LocationService locationService = new LocationService(API_URL, API_KEY);
-
 
         while (menuSelection != 0) {
             menuSelection = consoleService.printMainMenu();
