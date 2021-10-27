@@ -3,6 +3,7 @@ package com.techelevator.services;
 import com.techelevator.model.Hotel;
 import com.techelevator.model.Reservation;
 
+import org.springframework.http.*;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +22,8 @@ public class HotelService {
 		API_KEY = apiKey;
 	}
 
+//	API_BASE_URL = "https://te-pgh-api.azurewebsites.net/api/";
+
 	/**
 	 * Create a new reservation in the hotel reservation system
 	 *
@@ -28,8 +31,22 @@ public class HotelService {
 	 * @return Reservation
 	 */
 	public Reservation addReservation(String newReservation) {
-		// TODO: Implement method
-		return null;
+//		https://te-pgh-api.azurewebsites.net/api/reservations?apikey=03037
+		Reservation reservation = makeReservation(newReservation);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Reservation> httpEntity = new HttpEntity<>(reservation, headers);
+		String url = API_BASE_URL + "reservations?apikey=" + API_KEY;
+
+		Reservation createdReservation = null;
+		try {
+			createdReservation = restTemplate.postForObject(url, httpEntity, Reservation.class);
+		} catch (RestClientResponseException e) {
+			System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+		} catch (ResourceAccessException e) {
+			System.out.println("Server is unreachable.");
+		}
+		return createdReservation;
 	}
 
 	/**
@@ -40,7 +57,26 @@ public class HotelService {
 	 * @return
 	 */
 	public Reservation updateReservation(String CSV) {
-		// TODO: Implement method
+		Reservation reservation = makeReservation(CSV);
+		if (reservation == null) {
+			throw new IllegalArgumentException("CSV was invalid");
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Reservation> httpEntity = new HttpEntity<>(reservation, headers);
+
+		String url = API_BASE_URL + "reservations/" + reservation.getId() + "?apikey=" + API_KEY;
+		try {
+			// restTemplate.put(url, httpEntity);
+			ResponseEntity<Reservation> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, httpEntity, Reservation.class);
+			return responseEntity.getBody();
+		} catch (RestClientResponseException e) {
+			System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+		} catch (ResourceAccessException e) {
+			System.out.println("Server is unreachable.");
+		}
+
 		return null;
 	}
 
@@ -50,7 +86,16 @@ public class HotelService {
 	 * @param id
 	 */
 	public void deleteReservation(int id) {
-		// TODO: Implement method
+		String url = API_BASE_URL + "reservations/" + id + "?apikey=" + API_KEY;
+		try {
+			restTemplate.delete(url);
+		} catch (RestClientResponseException e) {
+			System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+		} catch (ResourceAccessException e) {
+			System.out.println("Server is unreachable.");
+		}
+
+
 	}
 
 	/* DON'T MODIFY ANY METHODS BELOW */

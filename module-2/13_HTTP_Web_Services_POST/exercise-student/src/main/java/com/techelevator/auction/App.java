@@ -9,7 +9,7 @@ import com.techelevator.services.ConsoleService;
 
 public class App {
 	public static final String API_URL = "https://te-pgh-api.azurewebsites.net/api/auctions";
-    public static final String API_KEY = "0000";
+    public static final String API_KEY = "03037";
 
 	public static void main(String[] args) {
 		int menuSelection;

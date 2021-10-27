@@ -3,6 +3,7 @@ package com.techelevator.services;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -69,18 +70,57 @@ public class AuctionService {
         return auctions;
     }
 
+//    API_URL --> "https://te-pgh-api.azurewebsites.net/api/auctions";
+
     public Auction add(String auctionString) {
-        // place code here
+        // URL --> https://te-pgh-api.azurewebsites.net/api/auctions?APIKey=03037
+        String url = API_URL + "?APIKey=" + API_KEY;
+        Auction auction = this.makeAuction(auctionString);
+        HttpEntity<Auction> httpEntity = this.makeEntity(auction);
+
+        try {
+            return restTemplate.postForObject(url, httpEntity, Auction.class);
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            System.out.println("Server was not available.");
+        }
         return null;
     }
 
     public Auction update(String auctionString) {
-        // place code here
+        // URL --> https://te-pgh-api.azurewebsites.net/api/auctions/{id}?APIKey=03037
+        Auction auction = this.makeAuction(auctionString);
+        HttpEntity<Auction> httpEntity = this.makeEntity(auction);
+
+        if (auction == null) {
+            throw new IllegalArgumentException("CSV was invalid");
+        }
+
+        String url = API_URL + "/" + auction.getId() + "?APIKey=" + API_KEY;
+
+        try {
+            restTemplate.put(url, httpEntity);
+            return auction;
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            System.out.println("Server was not available.");
+        }
         return null;
     }
 
     public boolean delete(int id) throws RestClientResponseException, ResourceAccessException {
-        // place code here
+        // URL --> https://te-pgh-api.azurewebsites.net/api/auctions/{id}?APIKey=03037
+        String url = API_URL + "/" + id + "?APIKey=" + API_KEY;
+        try {
+            restTemplate.delete(url);
+            return true;
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode() + " " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            System.out.println("Server was not available.");
+        }
         return false;
     }
 

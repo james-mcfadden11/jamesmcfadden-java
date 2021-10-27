@@ -8,7 +8,7 @@ import com.techelevator.services.HotelService;
 public class App {
 
     private static final String API_BASE_URL = "https://te-pgh-api.azurewebsites.net/api/";
-    private static final String API_KEY = "0000";
+    private static final String API_KEY = "03037";
 
     public static void main(String[] args) {
         int menuSelection = 999;
