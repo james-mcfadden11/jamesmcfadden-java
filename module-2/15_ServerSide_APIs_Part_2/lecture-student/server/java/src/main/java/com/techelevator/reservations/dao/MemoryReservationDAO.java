@@ -54,13 +54,13 @@ public class MemoryReservationDAO implements ReservationDAO {
     }
 
     @Override
-    public Reservation get(int reservationID) {
+    public Reservation get(int reservationID) throws ReservationNotFoundException {
         for (Reservation res : reservations) {
             if (res.getId() == reservationID) {
                 return res;
             }
         }
-        return null;
+        throw new ReservationNotFoundException();
     }
 
     @Override

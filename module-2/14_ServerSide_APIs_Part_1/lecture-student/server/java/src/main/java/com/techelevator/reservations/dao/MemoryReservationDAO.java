@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.techelevator.reservations.models.Hotel;
 import com.techelevator.reservations.models.Reservation;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 public class MemoryReservationDAO implements ReservationDAO {
 
@@ -87,5 +88,6 @@ public class MemoryReservationDAO implements ReservationDAO {
     private int getMaxIdPlusOne() {
         return getMaxID() + 1;
     }
+
 
 }
