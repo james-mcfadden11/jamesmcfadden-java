@@ -9,6 +9,7 @@ import com.techelevator.reservations.exception.ReservationNotFoundException;
 import com.techelevator.reservations.model.Hotel;
 import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 public class HotelController {
 
     private HotelDao hotelDao;
@@ -52,6 +54,8 @@ public class HotelController {
      *
      * @return all reservations
      */
+
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/reservations", method = RequestMethod.GET)
     public List<Reservation> listReservations() {
         return reservationDao.findAll();
