@@ -3,6 +3,8 @@ package com.techelevator.dao;
 import com.techelevator.model.Movie;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Date;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Component
 public class JdbcMovieDao implements MovieDao{
     private final JdbcTemplate jdbcTemplate;
 
@@ -36,7 +39,14 @@ public class JdbcMovieDao implements MovieDao{
 
     @Override
     public List<Movie> getAll() {
-        return null;
+        List<Movie> allMovies = new ArrayList<>();
+        String sql = "SELECT * FROM movie;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        while (results.next()) {
+            allMovies.add(mapRowToMovie(results));
+        }
+
+        return allMovies;
     }
 
     @Override
@@ -159,4 +169,12 @@ public class JdbcMovieDao implements MovieDao{
     public int getTimesCollaborated(int directorId, int actorId) {
         return 0;
     }
+
+    @Override
+    public List<Movie> getFavoritesListFor(String username) {
+        return null;
+    }
+
+
+
 }

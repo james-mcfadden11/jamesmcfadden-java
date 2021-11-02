@@ -28,4 +28,6 @@ public interface MovieDao {
     Movie getRandomByGenre(String genreName);
 
     int getTimesCollaborated(int directorId, int actorId);
+
+    List<Movie> getFavoritesListFor(String username);
 }

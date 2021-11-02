@@ -137,7 +137,7 @@ public class HotelService {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(authToken);
-        return new HttpEntity<>(reservation, headers);
+        return new HttpEntity<Reservation>(reservation, headers);
     }
 
     /**
