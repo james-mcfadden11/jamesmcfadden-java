@@ -24,9 +24,9 @@ public class HotelController {
     private HotelDao hotelDao;
     private ReservationDao reservationDao;
 
-    public HotelController() {
-        this.hotelDao = new MemoryHotelDao();
-        this.reservationDao = new MemoryReservationDao(hotelDao);
+    public HotelController(HotelDao hotelDao, ReservationDao reservationDao) {
+        this.hotelDao = hotelDao;
+        this.reservationDao = reservationDao;
     }
 
     /**
