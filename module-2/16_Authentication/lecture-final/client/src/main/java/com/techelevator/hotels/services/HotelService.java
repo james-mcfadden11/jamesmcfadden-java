@@ -141,6 +141,24 @@ public class HotelService {
     }
 
     /**
+     *
+     * POST      http://localhost:8080/auctions
+     * PUT       http://localhost:8080/auctions/1
+     *
+     * HTTP Entity
+     * HEADERS
+     * Authorization -> Bearer asdfsdfsdf.eadsfasdfsdf.eaefdsfsdfsd
+     * Content-Type -> application/json
+     *
+     * BODY
+     * {
+     *     name: "my auction",
+     *     startingBid: 10.00,
+     *     endAt: 11/3/2021
+     * }
+     */
+
+    /**
      * Returns an HttpEntity with the `Authorization: Bearer:` header
      */
     private HttpEntity<Void> makeAuthEntity() {
@@ -148,5 +166,36 @@ public class HotelService {
         headers.setBearerAuth(authToken);
         return new HttpEntity<>(headers);
     }
+
+
+    /**
+     * GET / DELETE
+     *
+     * GET      http://localhost:8080/auctions?price=10
+     * GET      http://localhost:8080/auctions/1
+     * DELETE   http://localhost:8080/auctions/1
+     *
+     * Http Entity
+     * HEADERS
+     * Authorization -> Bearer asdfsdfsdf.eadsfasdfsdf.eaefdsfsdfsd
+     */
+
+    /**
+     *
+     * HTTP Response
+     *
+     * Headers:
+     * Status: 200 OK
+     * Body:
+     * {
+     *     name: "my auction",
+     *     startingBid: 10.00,
+     *     endAt: 11/3/2021
+     * }
+     *
+     *
+     */
+
+
 
 }
