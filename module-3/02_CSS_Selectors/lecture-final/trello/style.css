@@ -1,0 +1,121 @@
+* {
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-image: linear-gradient(to bottom, #858c90, #bbb);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    white-space: nowrap;
+}
+
+header > h1,
+header > p {
+    display: inline-block;
+    height: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+    color: rgba(255, 255, 255, .8);
+    border-right: 1px solid rgba(255, 255, 255, .8);
+}
+
+header > h1 {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+header > p {
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+header {
+    position: fixed;
+    height: 50px;
+    top: 0px;
+    left: 0px;
+    background-color: #858c90;
+    width: 100%;
+    padding-left: 10px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+.trello-list {
+    display: inline-block;
+    width: 300px;
+    background-color: #ddd;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+.trello-list > h2 {
+    padding-bottom: 4px;
+    font-weight: bold;
+    margin: 8px;
+}
+
+ol.cards {
+    padding: 0;
+    margin: 0;
+}
+
+li.card {
+    list-style-type: none;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    margin-bottom: 10px;
+    padding: 8px;
+    white-space: normal;
+}
+
+li.card:hover {
+    background-color: #f5f6f7;
+    color: #092d42;
+    cursor: pointer;
+}
+
+li.card:last-child {
+    margin-bottom: 0;
+}
+
+.trello-list a {
+    display: block;
+    text-decoration: none;
+    color: #888;
+    padding: 8px 0px 8px 5px;
+}
+
+.trello-list a:hover {
+    background-color: rgba(9, 45, 66, 0.1);
+}
+
+.labels span {
+    display: inline-block;
+    vertical-align: top;
+    width: 35px;
+    height: 8px;
+    border-radius: 3px;
+  }
+  
+  .label.pathway {
+    background-color: red;
+  }
+  
+  .label.individual {
+    background-color: green;
+  }
+  
+  .label.pair {
+    background-color: teal;
+  }
+  
+  .label.general {
+    background-color: orange;
+  }
+
