@@ -1,0 +1,20 @@
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+body {
+    background-color: beige;
+}
+
+p {
+    font-style: italic;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+th {
+    font-size: 15px;
+}

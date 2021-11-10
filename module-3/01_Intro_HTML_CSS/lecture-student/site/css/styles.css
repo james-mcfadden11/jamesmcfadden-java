@@ -1,0 +1,15 @@
+h1 {
+    color:rgb(0, 110, 255); 
+    font-size: 14px;
+}
+
+h3 {
+    color: cadetblue;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+img {
+    height: 200px;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form action="/submit_user_info" method="POST">
+        <label for="name">Name: </label>
+        <input type="text" id="name" required>
+        <br>
+        
+        <label for="DOB">Date of Birth: </label>
+        <input type="date" id="DOB">
+        <br>
+
+        <label for="email">Email: </label>
+        <input type="email" id="email" required>
+        <br>
+
+        <label for="favorite_color">Favorite Color: </label>
+        <input type="color" id="favorite_color">
+        <br>
+
+        <label for="favorite_number">Favorite Number: </label>
+        <input type="number" id="favorite_number">
+        <br>
+
+        <label for="confirmation">Confirm data is correct </label>
+        <input type="checkbox" name="" id="">
+        <br>
+
+        <input type="submit" onclick="Confirmation()">
+    </form>
+    
+    <script>
+        function Confirmation() {
+            confirm("Press OK to confirm!");
+        }
+    </script>
+    
+
+
+</body>
+</html>
