@@ -1,0 +1,48 @@
+body,
+#hero > footer,
+#featured > section,
+#featured > section article div,
+#all-items > section article {
+    display: flex;
+}
+
+body {
+    flex-direction: column;
+    align-items: center;
+}
+
+#hero > footer {
+    justify-content: space-between;
+}
+
+#featured > section article div,
+#all-items > section article {
+    justify-content: center;
+}
+
+#featured > section article header,
+#featured > section article p {
+    text-align: center;
+}
+
+/* #all-items > section article:last-child {
+    flex-direction: row-reverse;
+} */
+
+#all-items > section article:last-child div:first-child {
+    order: 1;
+}
+
+#all-items > section article div:last-child {
+    flex-basis: 80%;   
+}
+
+@media only screen and (max-width: 768px) {
+    #featured section {
+        flex-direction: column;
+    }
+
+    #featured section article:nth-child(even) {
+        border: none;
+    }
+}
