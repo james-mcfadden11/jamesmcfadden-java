@@ -41,3 +41,13 @@ a:hover {
   color: #00AFEF;
   text-decoration: underline;
 }
+
+header, 
+header > nav > ul {
+  display: flex;
+  flex-direction: row;
+}
+
+header > nav > ul {
+  justify-content: center;
+}

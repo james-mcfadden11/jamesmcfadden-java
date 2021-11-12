@@ -88,6 +88,7 @@ public class MortgageCalculatorFunctionalTestWithoutPageObject {
 	@Test
 	public void multiple_elements_can_be_found_by_tag_name() {
 		List<WebElement> sections = webDriver.findElements(By.tagName("section"));
+		assertNotNull(sections);
 		assertEquals(3, sections.size());
 		for(WebElement section : sections) {
 			assertEquals("account", section.getAttribute("class"));

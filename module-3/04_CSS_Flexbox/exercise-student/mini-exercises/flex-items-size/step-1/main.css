@@ -17,3 +17,14 @@ body {
   text-align: center;
   border: solid 1px #777;
 }
+
+
+.container {
+  display: flex;
+}
+
+div {
+  flex-grow: 1;
+}
+
+

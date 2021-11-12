@@ -17,4 +17,13 @@ body {
   margin: 0 10px;
 }
 
-.bio:nth-child(2) img {}
+
+body > div:nth-child(1),
+body > div:nth-child(2) {
+  display: flex;
+}
+
+
+.bio:nth-child(2) img {
+  order: 2;
+}

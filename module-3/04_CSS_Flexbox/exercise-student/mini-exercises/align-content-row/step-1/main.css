@@ -16,3 +16,11 @@ body {
   color: #fff;
   border: solid 1px #777;
 }
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+

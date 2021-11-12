@@ -16,3 +16,8 @@ body {
   color: #fff;
   border: solid 1px #777;
 }
+
+.container {
+  display: flex;
+  align-items: flex-start;
+}
