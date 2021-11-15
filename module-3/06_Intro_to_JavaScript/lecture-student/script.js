@@ -1,3 +1,4 @@
+
 /*
     Example of a multi-line comment just like in C#/Java
 */
@@ -10,9 +11,18 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const DAY_OF_WEEK = 'Monday';
+  const carColor = 'White';
+  
   // Declares a variable those value can be changed
+  let doIHaveCoffee = false;
+  doIHaveCoffee = true;
+
   // Declares a variable that will always be an array
+  const students = ['Daniel', 'Grant', 'Kenton'];
+
 }
+
 
 /**
  * Functions can also accept parameters.
@@ -23,6 +33,8 @@ function variables() {
 function printParameters(param1, param2) {
   console.log(`The value of param1 is ${param1}`);
   console.log(`The value of param2 is ${param2}`);
+
+  console.log(`the value of third argument is ${arguments[2]}`);
 }
 
 /**
@@ -139,3 +151,5 @@ function stringFunctions(value) {
         - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
     */
 }
+
+variables();
