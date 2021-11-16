@@ -27,6 +27,9 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
+function multiplyTogether(a, b) {
+  return a * b;
+}
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -38,8 +41,9 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
-
-
+function multiplyNoUndefined(a = 0, b = 0) {
+  return a * b;
+}
  
 /**
  * Functions can return earlier before the end of the function. This could be useful
@@ -92,6 +96,21 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
   return description + listOfQuirks.join(separator);
 }
 
+let myArray = [1,2,3];
+myArray.some(value => value === 1);
+myArray.every(value => value === 1);
+
+myArray.map(value => value + 1);
+
+myArray.map(value => {
+  if (value > 2) {
+    return value * 2;
+  }
+  return value;
+});
+
+myArray.reduce();
+
 /**
  * Takes an array and, using the power of anonymous functions, generates
  * their sum.
@@ -100,7 +119,9 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  return numbersToSum.reduce((accumulator, currValue) => {
+    return accumulator + currValue;
+  });
 }
 
 /**
@@ -111,4 +132,45 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) {
+  newArray = [];
+  
+  for (let i = 0; numbersToFilter.length; i++) {
+    if (numbersToFilter[i] % 3 === 0) {
+      newArray.push(numbersToFilter[i]);
+    }
+  }
+
+  return newArray;
+}
+
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter(isDivisibleByThree);
+}
+
+function isDivisibleByThree(x) {
+  return x % 3 === 0;
+}
+
+function allDivisibleByThree(numbersToFilter) {
+  const isDivisibleByThree_option2 = function(x) {
+    return x % 3 === 0;
+  }
+  return numbersToFilter.filter(isDivisibleByThree_option2);
+}
+
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter(function(x) {
+    return x % 3 === 0;
+  });
+}
+
+function allDivisibleByThree(numbersToFilter) {
+  const isDivisibleByThree_option2 = x => x % 3 === 0;
+  return numbersToFilter.filter(isDivisibleByThree_option2);
+}
+
+function allDivisibleByThree(numbersToFilter) {
+  return numbersToFilter.filter(x => x % 3 === 0);
+}
+

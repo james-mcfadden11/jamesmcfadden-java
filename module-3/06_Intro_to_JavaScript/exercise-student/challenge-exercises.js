@@ -11,6 +11,34 @@
 		iqTest("") → 0 // there are no numbers in the given set
         iqTest("2 2 4 6") → 0 // all numbers are even, therefore there is no position of an odd number
 */
+function iqTest(str) {
+    let digitStringArray = str.split(" ");
+
+    let countEvens = 0;
+    let countOdds = 0;
+    let tempDigit = 0;
+    let lastEvenIndex = 0;
+    let lastOddIndex = 0;
+
+    for (let i = 0; i < digitStringArray.length; i++) {
+        if (countEvens === 1 && countOdds > 1) {
+            return lastEvenIndex + 1;
+        } else if (countOdds === 1 && countEvens > 1) {
+            return lastOddIndex + 1;
+        }
+
+        tempDigit = parseInt(digitStringArray[i]);
+
+        if (tempDigit % 2 === 0) {
+            countEvens++;
+            lastEvenIndex = i;
+        } else {
+            countOdds++;
+            lastOddIndex = i;
+        }
+    }
+    return 0;
+}
 
 /*
 2. **titleCase** Write a function that will convert a string into title case, given an optional 
@@ -28,3 +56,6 @@ argument is unused.
 		titleCase('THE WIND IN THE WILLOWS', 'The In') // should return: 'The Wind in the Willows'
         titleCase('the quick brown fox') // should return: 'The Quick Brown Fox'
 */
+function titleCase(title, minorWords) {
+    
+}
