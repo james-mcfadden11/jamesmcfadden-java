@@ -130,4 +130,57 @@ function resetFormValues() {
 /**
  * Save the review that was added using the add review form.
  */
-function saveReview() {}
+function saveReview(event) {
+  event.preventDefault();
+
+  const name = document.getElementById('name');
+  const title = document.getElementById('title');
+  const rating = document.getElementById('rating');
+  const review = document.getElementById('review');
+
+  const newReview = {
+    reviewer: name.value,
+    title: title.value,
+    rating: rating.value,
+    review: review.value
+  };
+
+  reviews.push(newReview);
+  displayReview(newReview);
+  showHideForm();
+
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const descriptionElement = document.querySelector('p.description');
+  descriptionElement.addEventListener('click', () => {
+    toggleDescriptionEdit(descriptionElement);
+  });
+
+  const editableDescriptionElement = document.getElementById('inputDesc');
+  editableDescriptionElement.addEventListener('mouseleave', () => {
+    exitDescriptionEdit(editableDescriptionElement, false);
+  });
+
+  editableDescriptionElement.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      exitDescriptionEdit(editableDescriptionElement, true);
+    }
+
+    if (event.key === 'Escape') {
+      exitDescriptionEdit(editableDescriptionElement, false);
+    }
+  });
+
+  const btnToggleForm = document.getElementById('btnToggleForm');
+  btnToggleForm.addEventListener('click', showHideForm);
+
+  const form = document.querySelector('form');
+  form.addEventListener('submit', saveReview);
+
+});
+
+
+
+

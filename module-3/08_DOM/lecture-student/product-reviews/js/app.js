@@ -33,22 +33,45 @@ const reviews = [
 
 /**
  * Add our product name to the page title
- * Get our page page title by the id and the query the .name selector
+ * Get our page title by the id and query the .name selector
  * once you have the element you can add the product name to the span.
  */
-function setPageTitle() {}
+function setPageTitle() {
+  const h2Element = document.getElementById('page-title');
+  const span = h2Element.querySelector('.name');
+  span.innerText = name;
+}
 
 /**
  * Add our product description to the page.
  */
-function setPageDescription() {}
+function setPageDescription() {
+  const paragraph = document.querySelector('.description');
+  paragraph.innerText = description;
+}
 
 /**
  * I will display all of the reviews on the page.
  * I will loop over the array of reviews and use some helper functions
  * to create the elements needed for our markup and add them to the DOM
+ * 
+ * <div class="review">
+      <h4>Reviewer</h4>
+      <div class="rating">
+          <img src="img/star.png" class="ratingStar"/>  <-- based on rating
+      </div>
+      <h3>title of the review</h3>
+      <p>preview goes here</p>
+    </div>
+ * 
  */
-function displayReviews() {}
+function displayReviews() {
+  reviews.forEach(review => {
+    const reviewDiv = document.createElement('div');
+    reviewDiv.classList.add('review');
+  })
+  
+}
 
 /**
  * I will create a new h4 element with the name of the reviewer and append it to
@@ -57,7 +80,10 @@ function displayReviews() {}
  * @param {HTMLElement} parent: The element to append the reviewer to
  * @param {string} name The name of the reviewer
  */
-function addReviewer(parent, name) {}
+function addReviewer(parent, name) {
+  const reviewerH4 = document.createElement('h4');
+  reviewerH4.innerText = name;
+}
 
 /**
  * I will add the rating div along with a star image for the number of ratings 1-5
