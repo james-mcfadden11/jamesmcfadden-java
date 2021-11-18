@@ -14,7 +14,8 @@ const groceries = [
 ];
 
 /**
- * This function will get a reference to the title and set its text to the value
+ * This function will get a reference to the title 
+ * and set its text to the value
  * of the pageTitle variable that was set above.
  */
 function setPageTitle() {
@@ -23,7 +24,8 @@ function setPageTitle() {
 }
 
 /**
- * This function will loop over the array of groceries that was set above and add them to the DOM.
+ * This function will loop over the array of groceries 
+ * that was set above and add them to the DOM.
  */
 function displayGroceries() {
   const ul = document.querySelector('ul');
@@ -39,3 +41,57 @@ function displayGroceries() {
 
 setPageTitle();
 displayGroceries();
+
+// ------------------------------------------------
+
+function markComplete(item) {
+  if (!item.classList.contains('completed')) {
+    item.classList.add('completed');
+    const checkMark = item.children[0];
+    checkMark.classList.add('completed');
+  }
+}
+
+function markIncomplete(item) {
+  if (item.classList.contains('completed')) {
+    item.classList.remove('completed');
+    const checkMark = item.children[0];
+    checkMark.classList.remove('completed');
+  }
+}
+
+function toggle(button, listItems) {
+  if (allItemsIncomplete) {
+    button.innerText = 'Mark All Incomplete';
+    listItems.forEach(item => markComplete(item));  
+  } else {
+    button.innerText = 'Mark All Complete';
+    listItems.forEach(item => markIncomplete(item));
+  }
+  allItemsIncomplete = !allItemsIncomplete;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const listItems = document.querySelectorAll('li');
+
+  // mark item complete
+  listItems.forEach(item => {
+    item.addEventListener('click', () => {
+      markComplete(item);
+    });
+  });
+
+  // mark item incomplete
+  listItems.forEach(item => {
+      item.addEventListener('dblclick', () => {
+        markIncomplete(item);
+      });
+    });
+
+  // toggle all complete/incomplete
+  const button = document.getElementById('toggleAll');
+  button.addEventListener('click', () => {
+    toggle(button, listItems);
+  });
+
+});
