@@ -12,6 +12,7 @@ let score = 0;
  *
  */
 function generateProblemSet() {
+  problemSet = [];
   for (i = 0; i < PROBLEMS_PER_SET; ++i) {
     const random1 = getRandomNumber(MAX_VALUE, MIN_VALUE);
     const random2 = getRandomNumber(MAX_VALUE, MIN_VALUE);
@@ -42,3 +43,46 @@ function getRandomNumber(max = 9, min = 0) {
 function shuffleArray(arr) {
   return arr.sort(() => Math.random() - 0.5)
 }
+
+
+// ----------------------------------------------------------
+
+function startOver() {
+  // reset problem counter
+  currentProblem = 1;
+  document.querySelector('.currentProblem').innerText = currentProblem;
+
+  // reset score
+  score = 0;
+  document.querySelector('.currentScore').innerText = score;
+
+  // create new problem set
+  generateProblemSet();
+
+  // fill in html with problem and answers
+  const currentProblemObject = problemSet[currentProblem - 1];
+  document.querySelector('.expression').innerText = `${currentProblemObject.problem.left} * ${currentProblemObject.problem.right}`;
+
+  let i = 0;
+  document.querySelectorAll('#answers li').forEach(li => {
+    li.innerText = currentProblemObject.answers[i];
+    i++;
+  });
+  
+}
+
+function attachEventListeners() {
+  document.getElementById('btnStartOver').addEventListener('click', startOver);
+  document.querySelectorAll('#answers li').forEach(li => {
+    li.addEventListener('click', answerChosen);
+  });
+}
+
+function answerChosen() {
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  startOver();
+  attachEventListeners();
+});
