@@ -1,7 +1,7 @@
 <template>
   <div class="card" v-bind:class="{ read: book.read }">
-    <h2 class="book-title">{{ book.title }}</h2>
-    <img v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
+    <h2 class="book-title" v-on:click.prevent="seeDetails(book.isbn)">{{ book.title }}</h2>
+    <img v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" v-on:click.prevent="seeDetails(book.isbn)"/>
     <h3 class="book-author">{{ book.author }}</h3>
     <div class="button-container" v-if="! enableAdd">
         <button class="mark-read" v-on:click.prevent="setRead(true)" v-if=" ! book.read">Mark Read</button>
@@ -30,6 +30,11 @@ export default {
             delete addedBook.bestSeller;
             delete addedBook.newRelease;
             this.$store.commit('SAVE_BOOK', addedBook);
+        },
+        seeDetails(isbn) {
+            let detailBook = this.$store.state.books.filter(book => {book.isbn == isbn});
+            this.$store.commit('SET_BOOK_DETAILED_VIEW', detailBook);
+            this.$router.push({ name: "book-details", params: { isbn: isbn } });
         }
     }
 }

@@ -12,6 +12,7 @@
 
 <script>
 export default {
+    
     methods: {
     checkTodoBox(todo) {
         this.$store.commit('FLIP_DONE', todo);
