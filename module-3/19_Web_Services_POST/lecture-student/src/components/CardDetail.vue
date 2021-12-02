@@ -58,7 +58,7 @@ export default {
         boardsService
           .deleteCard(this.card.id)
           .then(response => {
-            if (response.status === 200) {
+            if (response.status === 204) {
               alert("Card successfully deleted");
               this.$router.push(`/board/${this.card.boardId}`);
             }

@@ -68,7 +68,31 @@ export default {
         });
     },
     saveNewBoard() {
-
+      // create a board object to save
+      // save it to the database using an API call
+        this.isLoading = true;
+        boardsService
+          .addBoard(this.newBoard)
+          .then(response => {
+            if (response && response.status == 201) {
+              // update the store with added board
+              this.showAddBoard = false;
+              this.resetBoardForm();
+              this.retrieveBoards();
+              this.isLoading = false;
+            }
+          })
+          .catch(error => {
+            // log the error
+            if (error.response) {
+              this.errorMsg = `Error retrieving boards. Response received was ' ${error.response.statusText}'.`;                "'.";
+            } else if (error.request) {
+              this.errorMsg = "Error retrieving boards. Server could not be reached.";
+            } else {
+              this.errorMsg = "Error retreiving boards. Request could not be created.";
+            }
+          });
+          this.isLoading = false;
     },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();
@@ -77,6 +101,9 @@ export default {
       var bg = Math.floor(Math.random()*16777215).toString(16);
       if (bg.length !== 6) bg = this.generateHexCode();
       return bg;
+    }, 
+    resetBoardForm() {
+      this.newBoard = {};
     }
   }
 };

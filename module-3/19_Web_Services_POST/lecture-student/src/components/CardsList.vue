@@ -66,29 +66,24 @@ export default {
         });
     },
     deleteBoard() {
-       if (confirm("Are you sure you want to delete this board and all associated cards? This action cannot be undone.")) {
+      // prompt user if they are sure they want to delete
+      const confirmedDelete = confirm('Are you sure you want to delete?');
+      // if yes, delete
+      if (confirmedDelete) {
+        // call delete board method from service (pass in board ID)
         boardsService
-          .deleteBoard(this.boardId)
+          .deleteBoard(this.$route.params.id)
           .then(response => {
-            if (response.status === 200) {
-              alert("Board successfully deleted");
-              this.$router.push("/");
+            if (response && response.status == 204) {
+              this.$store.commit('DELETE_BOARD', this.$route.params.id);
+              alert('Delete was successful');
+              this.$router.push('/');
             }
           })
           .catch(error => {
-            if (error.response) {
-              this.errorMsg =
-                "Error deleting board. Response received was '" +
-                error.response.statusText +
-                "'.";
-            } else if (error.request) {
-              this.errorMsg =
-                "Error deleting board. Server could not be reached.";
-            } else {
-              this.errorMsg =
-                "Error deleting board. Request could not be created.";
-            }
-          });
+            this.errorMsg = 'Error occurred ' + error;
+          })
+        // if it worked, return 
       }
     }
   },
