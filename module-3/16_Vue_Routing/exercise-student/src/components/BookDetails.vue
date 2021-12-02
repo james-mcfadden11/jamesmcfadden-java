@@ -1,14 +1,15 @@
 <template>
-  <book-card v-bind:book="book"></book-card>
+  <div>
+    <h2 class="book-title">{{ book.title }}</h2>
+    <img v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/>
+    <h3 class="book-author">{{ book.author }}</h3>
+  </div>
 </template>
 
 <script>
-import BookCard from '@/components/BookCard.vue';
 export default {
-    name: 'book-details',
-    components: {
-        BookCard
-    }
+  name: "BookDetails",
+  props: ['book']
 }
 </script>
 

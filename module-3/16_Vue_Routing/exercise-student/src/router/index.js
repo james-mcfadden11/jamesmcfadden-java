@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import MyBooks from '../views/MyBooks.vue';
 import NewBook from '../views/NewBook.vue';
-import BookDetails from '../views/BookDetails.vue';
+import ISBN from '../views/ISBN.vue';
 
 Vue.use(VueRouter);
 
@@ -25,7 +25,7 @@ const routes = [
   },
   {
     path: '/book/:isbn',
-    component: BookDetails,
+    component: ISBN,
     name: 'book-details'
   }
 ];

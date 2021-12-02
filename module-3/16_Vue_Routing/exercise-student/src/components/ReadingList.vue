@@ -9,6 +9,7 @@ import BookCard from '@/components/BookCard.vue';
 
 export default {
     name: 'reading-list',
+    props: ['book'],
     components: {
         BookCard
     }
